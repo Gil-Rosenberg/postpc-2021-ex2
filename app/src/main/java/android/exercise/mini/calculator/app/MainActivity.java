@@ -56,61 +56,33 @@ public class MainActivity extends AppCompatActivity {
       textViewCalculatorOutput.setText(calculator.output());
     });
 
-    buttonPlus.setOnClickListener(v -> {
-      calculator.insertPlus();
-    });
+    buttonPlus.setOnClickListener(v -> calculator.insertPlus());
 
-    buttonMinus.setOnClickListener(v -> {
-      calculator.insertMinus();
-    });
+    buttonMinus.setOnClickListener(v -> calculator.insertMinus());
 
-    buttonClear.setOnClickListener(v -> {
-      calculator.clear();
-    });
+    buttonClear.setOnClickListener(v -> calculator.clear());
 
-    button0.setOnClickListener(v -> {
-      calculator.insertDigit(0);
-    });
+    button0.setOnClickListener(v -> calculator.insertDigit(0));
 
-    button1.setOnClickListener(v -> {
-      calculator.insertDigit(1);
-    });
+    button1.setOnClickListener(v -> calculator.insertDigit(1));
 
-    button2.setOnClickListener(v -> {
-      calculator.insertDigit(2);
-    });
+    button2.setOnClickListener(v -> calculator.insertDigit(2));
 
-    button3.setOnClickListener(v -> {
-      calculator.insertDigit(3);
-    });
+    button3.setOnClickListener(v -> calculator.insertDigit(3));
 
-    button4.setOnClickListener(v -> {
-      calculator.insertDigit(4);
-    });
+    button4.setOnClickListener(v -> calculator.insertDigit(4));
 
-    button5.setOnClickListener(v -> {
-      calculator.insertDigit(5);
-    });
+    button5.setOnClickListener(v -> calculator.insertDigit(5));
 
-    button6.setOnClickListener(v -> {
-      calculator.insertDigit(6);
-    });
+    button6.setOnClickListener(v -> calculator.insertDigit(6));
 
-    button7.setOnClickListener(v -> {
-      calculator.insertDigit(7);
-    });
+    button7.setOnClickListener(v -> calculator.insertDigit(7));
 
-    button8.setOnClickListener(v -> {
-      calculator.insertDigit(8);
-    });
+    button8.setOnClickListener(v -> calculator.insertDigit(8));
 
-    button9.setOnClickListener(v -> {
-      calculator.insertDigit(9);
-    });
+    button9.setOnClickListener(v -> calculator.insertDigit(9));
 
-    buttonBackSpace.setOnClickListener(v -> {
-      calculator.deleteLast();
-    });
+    buttonBackSpace.setOnClickListener(v -> calculator.deleteLast());
   }
 
   @Override
