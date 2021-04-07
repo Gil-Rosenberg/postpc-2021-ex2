@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
   protected void onSaveInstanceState(@NonNull Bundle outState) {
     super.onSaveInstanceState(outState);
     // todo: save calculator state into the bundle
+    outState.putSerializable("calculator state", calculator.saveState());
   }
 
   @Override

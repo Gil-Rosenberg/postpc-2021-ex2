@@ -9,8 +9,6 @@ import java.util.Collections;
 
 public class SimpleCalculatorImpl implements SimpleCalculator {
 
-  // todo: add fields as needed
-
   private final ArrayList<String> history = new ArrayList<>();
 
   /**
@@ -19,6 +17,9 @@ public class SimpleCalculatorImpl implements SimpleCalculator {
    */
   @Override
   public String output() {
+    if (this.history.isEmpty()){
+      return "0";
+    }
     return TextUtils.join("", this.history);
   }
 
@@ -36,6 +37,10 @@ public class SimpleCalculatorImpl implements SimpleCalculator {
    */
   @Override
   public void insertPlus() {
+    if (this.history.get(this.history.size() - 1).equals("+") ||
+            this.history.get(this.history.size() - 1).equals("-")){
+      return; // ignore
+    }
     this.history.add("+");
   }
 
@@ -44,6 +49,10 @@ public class SimpleCalculatorImpl implements SimpleCalculator {
    */
   @Override
   public void insertMinus() {
+    if (this.history.get(this.history.size() - 1).equals("+") ||
+            this.history.get(this.history.size() - 1).equals("-")){
+      return; // ignore
+    }
     this.history.add("-");
   }
 
@@ -86,38 +95,49 @@ public class SimpleCalculatorImpl implements SimpleCalculator {
     this.history.add(String.valueOf(result));   // put the result
   }
 
+  /**
+   * delete the last input (digit, plus or minus)
+   * if input was "12+3" and called `deleteLast()`, then delete the "3"
+   * if input was "12+" and called `deleteLast()`, then delete the "+"
+   * if no input was given, then there is nothing to do here
+   */
   @Override
   public void deleteLast() {
-    // todo: delete the last input (digit, plus or minus)
-    //  e.g.
-    //  if input was "12+3" and called `deleteLast()`, then delete the "3"
-    //  if input was "12+" and called `deleteLast()`, then delete the "+"
-    //  if no input was given, then there is nothing to do here
+    if (this.history.isEmpty()){
+      return; // ignore
+    }
     this.history.remove(this.history.size() - 1);
   }
 
+  /**
+   * clear everything (same as no-input was never given)
+   */
   @Override
   public void clear() {
-    // todo: clear everything (same as no-input was never given)
     this.history.clear();
-    this.history.add("0");
   }
 
+  /**
+   * insert all data to the state, so in the future we can load from this state
+   * @return Serializable
+   */
   @Override
   public Serializable saveState() {
     CalculatorState state = new CalculatorState();
-    // todo: insert all data to the state, so in the future we can load from this state
     Collections.copy(state.copyOfHistory, this.history);
     return state;
   }
 
+  /**
+   * use the CalculatorState to load
+   * @param prevState the state to load
+   */
   @Override
   public void loadState(Serializable prevState) {
     if (!(prevState instanceof CalculatorState)) {
       return; // ignore
     }
     CalculatorState casted = (CalculatorState) prevState;
-    // todo: use the CalculatorState to load
     Collections.copy(this.history, casted.copyOfHistory);
   }
 
