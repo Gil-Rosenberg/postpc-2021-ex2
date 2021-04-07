@@ -2,6 +2,8 @@ package android.exercise.mini.calculator.app;
 
 import java.io.Serializable;
 
+
+// TODO the calculator interface. Just read it. No need to edit this file.
 public interface SimpleCalculator {
 
   /**
