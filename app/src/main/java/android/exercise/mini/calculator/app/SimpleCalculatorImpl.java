@@ -20,7 +20,13 @@ public class SimpleCalculatorImpl implements SimpleCalculator {
     if (this.history.isEmpty()){
       return "0";
     }
-    return TextUtils.join("", this.history);
+
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < this.history.size(); i++) {
+      sb.append(this.history.get(i));
+    }
+
+    return sb.toString();
   }
 
   /**
@@ -28,7 +34,10 @@ public class SimpleCalculatorImpl implements SimpleCalculator {
    * @param digit - number between 0 to 9.
    */
   @Override
-  public void insertDigit(int digit) {
+  public void insertDigit(int digit) throws RuntimeException{
+    if ((digit < 0) || (9 < digit)){
+      throw new RuntimeException();
+    }
     this.history.add(String.valueOf(digit));
   }
 
@@ -37,7 +46,10 @@ public class SimpleCalculatorImpl implements SimpleCalculator {
    */
   @Override
   public void insertPlus() {
-    if (this.history.get(this.history.size() - 1).equals("+") ||
+    if (this.history.isEmpty()){
+      this.history.add("0");
+    }
+    else if (this.history.get(this.history.size() - 1).equals("+") ||
             this.history.get(this.history.size() - 1).equals("-")){
       return; // ignore
     }
@@ -49,7 +61,10 @@ public class SimpleCalculatorImpl implements SimpleCalculator {
    */
   @Override
   public void insertMinus() {
-    if (this.history.get(this.history.size() - 1).equals("+") ||
+    if (this.history.isEmpty()){
+      this.history.add("0");
+    }
+    else if (this.history.get(this.history.size() - 1).equals("+") ||
             this.history.get(this.history.size() - 1).equals("-")){
       return; // ignore
     }
@@ -62,33 +77,40 @@ public class SimpleCalculatorImpl implements SimpleCalculator {
    */
   @Override
   public void insertEquals() {
-    int result = 0;
-    boolean minus = false, plus = false;
-    for (String str: this.history) {
-      if (str.equals("+")) {
-        plus = true;
-        minus = false;
-        continue;
+    StringBuilder curNum = new StringBuilder();
+    ArrayList<Integer> numbersToCalc = new ArrayList<>();
+    ArrayList<String> ops = new ArrayList<>();
+    int result;
+
+    for (int i = 0; i < this.history.size(); i++) {
+
+      if (!this.history.get(i).equals("+") && !this.history.get(i).equals("-")){
+        curNum.append(this.history.get(i));
       }
 
-      if (str.equals("-")){
-        minus = true;
-        plus = false;
-        continue;
+      else {
+        numbersToCalc.add(Integer.parseInt(String.valueOf(curNum)));
+        curNum.setLength(0);
+        ops.add(this.history.get(i));
+      }
+    }
+
+    if (curNum.length() != 0){
+      numbersToCalc.add(Integer.parseInt(String.valueOf(curNum)));
+      curNum.setLength(0);
+    }
+
+    result = numbersToCalc.get(0);
+    for (int i = 0; i < numbersToCalc.size() - 1; i++) {
+      if (ops.get(0).equals("+")){
+        result += numbersToCalc.get(i + 1);
+        ops.remove(0);
       }
 
-      if (plus){
-        result += Integer.parseInt(str);
-        plus = false;
-        continue;
+      else if (ops.get(0).equals("-")){
+        result -= numbersToCalc.get(i + 1);
+        ops.remove(0);
       }
-
-      else if (minus){
-        result -= Integer.parseInt(str);
-        minus = false;
-        continue;
-      }
-      result = Integer.parseInt(str);
     }
 
     this.history.clear();   // erase calculations
@@ -124,7 +146,7 @@ public class SimpleCalculatorImpl implements SimpleCalculator {
   @Override
   public Serializable saveState() {
     CalculatorState state = new CalculatorState();
-    Collections.copy(state.copyOfHistory, this.history);
+    state.copyOfHistory.addAll(this.history);
     return state;
   }
 
@@ -138,7 +160,8 @@ public class SimpleCalculatorImpl implements SimpleCalculator {
       return; // ignore
     }
     CalculatorState casted = (CalculatorState) prevState;
-    Collections.copy(this.history, casted.copyOfHistory);
+    this.history.clear();
+    this.history.addAll(casted.copyOfHistory);
   }
 
   private static class CalculatorState implements Serializable {

@@ -119,6 +119,7 @@ public class SimpleCalculatorImplTest {
     // give some input
     calculatorUnderTest.insertDigit(5);
     calculatorUnderTest.insertPlus();
+    calculatorUnderTest.insertDigit(1);
     calculatorUnderTest.insertDigit(7);
     calculatorUnderTest.insertMinus();
     calculatorUnderTest.insertDigit(1);
@@ -139,23 +140,23 @@ public class SimpleCalculatorImplTest {
     SimpleCalculatorImpl calculatorUnderTest = new SimpleCalculatorImpl();
 
     // give some input
-    calculatorUnderTest.insertDigit(9);
+    calculatorUnderTest.insertDigit(9);   // 9
 
     // clear
-    calculatorUnderTest.clear();
+    calculatorUnderTest.clear();          // 0
 
     // give some more input
-    calculatorUnderTest.insertDigit(1);
-    calculatorUnderTest.insertDigit(2);
+    calculatorUnderTest.insertDigit(1);   // 1
+    calculatorUnderTest.insertDigit(2);   // 12
 
     // clear
-    calculatorUnderTest.clear();
+    calculatorUnderTest.clear();          // 0
 
     // give some more input
-    calculatorUnderTest.insertDigit(8);
-    calculatorUnderTest.insertMinus();
-    calculatorUnderTest.insertDigit(7);
-    calculatorUnderTest.insertEquals();
+    calculatorUnderTest.insertDigit(8);   // 8
+    calculatorUnderTest.insertMinus();    // 8-
+    calculatorUnderTest.insertDigit(7);   // 8-7
+    calculatorUnderTest.insertEquals();   // 1
 
     assertEquals("1", calculatorUnderTest.output());
   }
@@ -285,6 +286,33 @@ public class SimpleCalculatorImplTest {
 
   @Test
   public void when_calling_deleteLast_and_there_is_no_input_yet(){
+    SimpleCalculatorImpl calculatorUnderTest = new SimpleCalculatorImpl();
+    calculatorUnderTest.deleteLast();
+    assertEquals("0", calculatorUnderTest.output());
+  }
 
+  @Test
+  public void calling_enough_times_to_deleteLast_that_all_input_is_deleted(){
+    SimpleCalculatorImpl calculatorUnderTest = new SimpleCalculatorImpl();
+
+    // give some input
+    calculatorUnderTest.insertDigit(1);
+    calculatorUnderTest.insertDigit(2);
+    calculatorUnderTest.insertDigit(3);
+    calculatorUnderTest.insertDigit(4);
+    calculatorUnderTest.insertDigit(5);
+    calculatorUnderTest.insertDigit(6);
+    calculatorUnderTest.insertDigit(7);
+
+    // delete lasts
+    calculatorUnderTest.deleteLast(); // 7
+    calculatorUnderTest.deleteLast(); // 6
+    calculatorUnderTest.deleteLast(); // 5
+    calculatorUnderTest.deleteLast(); // 4
+    calculatorUnderTest.deleteLast(); // 3
+    calculatorUnderTest.deleteLast(); // 2
+    calculatorUnderTest.deleteLast(); // 1
+
+    assertEquals("0", calculatorUnderTest.output());
   }
 }
