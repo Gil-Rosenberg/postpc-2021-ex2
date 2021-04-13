@@ -4,11 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.Serializable;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
     TextView button8 = findViewById(R.id.button8);
     TextView button9 = findViewById(R.id.button9);
     View buttonBackSpace = findViewById(R.id.buttonBackSpace);
-    View spaceBelowButton1 = findViewById(R.id.spaceBelowButton1);
-    ImageView backSpaceImage = findViewById(R.id.backSpaceImage);
+//    View spaceBelowButton1 = findViewById(R.id.spaceBelowButton1);
+//    ImageView backSpaceImage = findViewById(R.id.backSpaceImage);
 
     // 2. initial update main text-view based on calculator's output
     textViewCalculatorOutput.setText("0");
@@ -85,16 +85,24 @@ public class MainActivity extends AppCompatActivity {
     buttonBackSpace.setOnClickListener(v -> calculator.deleteLast());
   }
 
+  /**
+   * save calculator state into the bundle
+   * @param outState - Bundle
+   */
   @Override
   protected void onSaveInstanceState(@NonNull Bundle outState) {
     super.onSaveInstanceState(outState);
-    // todo: save calculator state into the bundle
     outState.putSerializable("calculator state", calculator.saveState());
   }
 
+  /**
+   * restore calculator state from the bundle, refresh main text-view from calculator's output
+   * @param savedInstanceState - Bundle
+   */
   @Override
   protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
     super.onRestoreInstanceState(savedInstanceState);
-    // todo: restore calculator state from the bundle, refresh main text-view from calculator's output
+    Serializable prevState = savedInstanceState.getSerializable("calculator state");
+    calculator.loadState(prevState);
   }
 }
