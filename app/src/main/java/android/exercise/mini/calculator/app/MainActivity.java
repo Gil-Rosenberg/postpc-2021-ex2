@@ -74,9 +74,6 @@ public class MainActivity extends AppCompatActivity {
     View buttonBackSpace = findViewById(R.id.buttonBackSpace);
     buttonBackSpace.setVisibility(View.VISIBLE);
 
-//    View spaceBelowButton1 = findViewById(R.id.spaceBelowButton1);
-//    ImageView backSpaceImage = findViewById(R.id.backSpaceImage);
-
     // 2. initial update main text-view based on calculator's output
     textViewCalculatorOutput.setText(calculator.output());
 

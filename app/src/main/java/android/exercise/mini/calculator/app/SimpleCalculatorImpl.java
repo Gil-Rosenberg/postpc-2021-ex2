@@ -1,10 +1,7 @@
 package android.exercise.mini.calculator.app;
 
-import android.text.TextUtils;
-
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 
 
 public class SimpleCalculatorImpl implements SimpleCalculator {
@@ -169,14 +166,6 @@ public class SimpleCalculatorImpl implements SimpleCalculator {
   }
 
   private static class CalculatorState implements Serializable {
-    /*
-    TODO: add fields to this class that will store the calculator state
-    all fields must only be from the types:
-    - primitives (e.g. int, boolean, etc)
-    - String
-    - ArrayList<> where the type is a primitive or a String
-    - HashMap<> where the types are primitives or a String
-     */
     private final ArrayList<String> copyOfHistory = new ArrayList<>();
   }
 }
