@@ -30,25 +30,55 @@ public class MainActivity extends AppCompatActivity {
 
     // buttons:
     TextView buttonEquals = findViewById(R.id.buttonEquals);
+    buttonEquals.setVisibility(View.VISIBLE);
+
     TextView buttonPlus = findViewById(R.id.buttonPlus);
+    buttonPlus.setVisibility(View.VISIBLE);
+
     TextView buttonMinus = findViewById(R.id.buttonMinus);
+    buttonMinus.setVisibility(View.VISIBLE);
+
     TextView buttonClear = findViewById(R.id.buttonClear);
+    buttonClear.setVisibility(View.VISIBLE);
+
     TextView button0 = findViewById(R.id.button0);
+    button0.setVisibility(View.VISIBLE);
+
     TextView button1 = findViewById(R.id.button1);
+    button1.setVisibility(View.VISIBLE);
+
     TextView button2 = findViewById(R.id.button2);
+    button2.setVisibility(View.VISIBLE);
+
     TextView button3 = findViewById(R.id.button3);
+    button3.setVisibility(View.VISIBLE);
+
     TextView button4 = findViewById(R.id.button4);
+    button4.setVisibility(View.VISIBLE);
+
     TextView button5 = findViewById(R.id.button5);
+    button5.setVisibility(View.VISIBLE);
+
     TextView button6 = findViewById(R.id.button6);
+    button6.setVisibility(View.VISIBLE);
+
     TextView button7 = findViewById(R.id.button7);
+    button7.setVisibility(View.VISIBLE);
+
     TextView button8 = findViewById(R.id.button8);
+    button8.setVisibility(View.VISIBLE);
+
     TextView button9 = findViewById(R.id.button9);
+    button9.setVisibility(View.VISIBLE);
+
     View buttonBackSpace = findViewById(R.id.buttonBackSpace);
+    buttonBackSpace.setVisibility(View.VISIBLE);
+
 //    View spaceBelowButton1 = findViewById(R.id.spaceBelowButton1);
 //    ImageView backSpaceImage = findViewById(R.id.backSpaceImage);
 
     // 2. initial update main text-view based on calculator's output
-    textViewCalculatorOutput.setText("0");
+    textViewCalculatorOutput.setText(calculator.output());
 
     // 3. set click listeners on all buttons to operate on the calculator and refresh main text-view
     buttonEquals.setOnClickListener(v -> {
@@ -56,33 +86,75 @@ public class MainActivity extends AppCompatActivity {
       textViewCalculatorOutput.setText(calculator.output());
     });
 
-    buttonPlus.setOnClickListener(v -> calculator.insertPlus());
+    buttonPlus.setOnClickListener(v -> {
+      calculator.insertPlus();
+      textViewCalculatorOutput.setText(calculator.output());
+    });
 
-    buttonMinus.setOnClickListener(v -> calculator.insertMinus());
+    buttonMinus.setOnClickListener(v -> {
+      calculator.insertMinus();
+      textViewCalculatorOutput.setText(calculator.output());
+    });
 
-    buttonClear.setOnClickListener(v -> calculator.clear());
+    buttonClear.setOnClickListener(v -> {
+      calculator.clear();
+      textViewCalculatorOutput.setText(calculator.output());
+    });
 
-    button0.setOnClickListener(v -> calculator.insertDigit(0));
+    button0.setOnClickListener(v -> {
+      calculator.insertDigit(0);
+      textViewCalculatorOutput.setText(calculator.output());
+    });
 
-    button1.setOnClickListener(v -> calculator.insertDigit(1));
+    button1.setOnClickListener(v -> {
+      calculator.insertDigit(1);
+      textViewCalculatorOutput.setText(calculator.output());
+    });
 
-    button2.setOnClickListener(v -> calculator.insertDigit(2));
+    button2.setOnClickListener(v -> {
+      calculator.insertDigit(2);
+      textViewCalculatorOutput.setText(calculator.output());
+    });
 
-    button3.setOnClickListener(v -> calculator.insertDigit(3));
+    button3.setOnClickListener(v -> {
+      calculator.insertDigit(3);
+      textViewCalculatorOutput.setText(calculator.output());
+    });
 
-    button4.setOnClickListener(v -> calculator.insertDigit(4));
+    button4.setOnClickListener(v -> {
+      calculator.insertDigit(4);
+      textViewCalculatorOutput.setText(calculator.output());
+    });
 
-    button5.setOnClickListener(v -> calculator.insertDigit(5));
+    button5.setOnClickListener(v -> {
+      calculator.insertDigit(5);
+      textViewCalculatorOutput.setText(calculator.output());
+    });
 
-    button6.setOnClickListener(v -> calculator.insertDigit(6));
+    button6.setOnClickListener(v -> {
+      calculator.insertDigit(6);
+      textViewCalculatorOutput.setText(calculator.output());
+    });
 
-    button7.setOnClickListener(v -> calculator.insertDigit(7));
+    button7.setOnClickListener(v -> {
+      calculator.insertDigit(7);
+      textViewCalculatorOutput.setText(calculator.output());
+    });
 
-    button8.setOnClickListener(v -> calculator.insertDigit(8));
+    button8.setOnClickListener(v -> {
+      calculator.insertDigit(8);
+      textViewCalculatorOutput.setText(calculator.output());
+    });
 
-    button9.setOnClickListener(v -> calculator.insertDigit(9));
+    button9.setOnClickListener(v -> {
+      calculator.insertDigit(9);
+      textViewCalculatorOutput.setText(calculator.output());
+    });
 
-    buttonBackSpace.setOnClickListener(v -> calculator.deleteLast());
+    buttonBackSpace.setOnClickListener(v -> {
+      calculator.deleteLast();
+      textViewCalculatorOutput.setText(calculator.output());
+    });
   }
 
   /**
