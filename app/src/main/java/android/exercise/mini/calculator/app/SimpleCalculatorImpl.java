@@ -82,6 +82,10 @@ public class SimpleCalculatorImpl implements SimpleCalculator {
     ArrayList<String> ops = new ArrayList<>();
     int result;
 
+    if (this.history.isEmpty()){
+      return;
+    }
+
     for (int i = 0; i < this.history.size(); i++) {
 
       if (!this.history.get(i).equals("+") && !this.history.get(i).equals("-")){

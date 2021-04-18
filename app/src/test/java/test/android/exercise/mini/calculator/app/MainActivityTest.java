@@ -311,7 +311,6 @@ public class MainActivityTest {
   }
   // -----------------------------------------------------------------------------------------
 
-
   @Test
   public void when_activityGetsStateSaved_then_shouldAlsoSaveCalculatorState() {
     // setup
@@ -326,7 +325,6 @@ public class MainActivityTest {
     // verify
     Mockito.verify(spyBundle).putSerializable(anyString(), eq(dummyState)); // make sure that the activity stored the calculator state into the spy bundle
   }
-
 
   @Test
   public void when_activityGetsStateRestored_then_shouldAlsoSaveCalculatorState() {
