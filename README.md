@@ -13,12 +13,15 @@ ANSWER:
 The files in which we will need to update the code: 
 1. SimpleCalculatorImpl - add a new function multiplication(int x, int y).
 2. MainActivity - add a setOnClickListener for button "x".
+
 Test can we run on the calculator:
 -   Checking the logical correctness of a multiplication operation.
     For example: "7x2=" -> 14.
+    
 Test can we run on the activity:
 -   when user clicks buttonX then activity should forward call to calculator and show the expected
     calculator output right away.
+    
 Test can we run on the app:
 -   run clicks on "7X5<backspace>4=" and expect to get "28" as the answer.
 
